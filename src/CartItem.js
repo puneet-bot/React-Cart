@@ -6,17 +6,34 @@ class CartItem extends React.Component{
         this.state={
             price:99,
             title:'Phone',
-            qty:100,
+            qty:1,
             img:''
         }
         // Method 2 in constructor.
         // this.increaseQuantity=this.increaseQuantity.bind(this)
     }
-    increaseQuantity(){
-        console.log('test',this)
+    
+    increaseQuantity=()=>{
+        //Methpd 1 shallow copying
+        // this.setState({
+        //     qty:this.state.qty+1
+        // })
+        //Method 2 is used when we want to use the value of previous state as in this scenario
+        this.setState((prev)=>{
+            return {
+                qty:prev.qty+1
+            }
+        })
     }
     decreaseQuantity=()=>{
-        console.log('test',this)
+        this.setState((prev)=>{
+            if(prev.qty==1){
+                return;
+            }
+            return {
+                qty:prev.qty-1
+            }
+        })
     }
     delete=()=>{
         console.log('test',this)
