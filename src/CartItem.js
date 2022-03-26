@@ -1,47 +1,41 @@
 import React from 'react';
 
 class CartItem extends React.Component{
-    constructor(){
-        super();
-        this.state={
-            price:99,
-            title:'Phone',
-            qty:1,
-            img:''
-        }
-        // Method 2 in constructor.
-        // this.increaseQuantity=this.increaseQuantity.bind(this)
-    }
     
-    increaseQuantity=()=>{
-        //Methpd 1 shallow copying
-        // this.setState({
-        //     qty:this.state.qty+1
-        // })
-        //Method 2 is used when we want to use the value of previous state as in this scenario
-        this.setState((prev)=>{
-            return {
-                qty:prev.qty+1
-            }
-        })
-    }
-    decreaseQuantity=()=>{
-        this.setState((prev)=>{
-            if(prev.qty==1){
-                return;
-            }
-            return {
-                qty:prev.qty-1
-            }
-        })
-    }
-    delete=()=>{
-        console.log('test',this)
-    }
+    
+    // increaseQuantity=()=>{
+    //     //Methpd 1 shallow copying
+    //     // this.setState({
+    //     //     qty:this.state.qty+1
+    //     // })
+    //     //Method 2 is used when we want to use the value of previous state as in this scenario
+    //     this.setState((prev)=>{
+    //         return {
+    //             qty:prev.qty+1
+    //         }
+    //     })
+    // }
+    // decreaseQuantity=()=>{
+    //     this.setState((prev)=>{
+    //         if(prev.qty==1){
+    //             return;
+    //         }
+    //         return {
+    //             qty:prev.qty-1
+    //         }
+    //     })
+    // }
+    // delete=()=>{
+    //     console.log('test',this)
+    // }
     render(){
-        const {price,title,qty,image}=this.state;
+
+        const {qty,price,title,image,id}=this.props.products;
+        const {products,increaseQuantity,decreaseQuantity,onDelete}=this.props;
+        // console.log(this.props.products)
         return (
             <div className='cart-item'>
+                {/* {this.props.jsx} */}
                 <div className='left-block'>
                     <img style={styles.image} alt="carts" src={image} />
                 </div>
@@ -57,7 +51,7 @@ class CartItem extends React.Component{
                         //Method1 bind the values
                         // onClick={this.increaseQuantity.bind(this)}
                         // method 2 call and define in the constructor
-                        onClick={this.increaseQuantity}
+                        onClick={() => increaseQuantity(products)}
                         // Method3 is to convert into arrow function and it will by default bind the values.
                         />
                     </div>
@@ -66,7 +60,7 @@ class CartItem extends React.Component{
                         alt='decrease'
                         className='action-icons'
                         src=''
-                        onClick={this.decreaseQuantity}
+                        onClick={() => decreaseQuantity(products)}
                         />
                     </div>
                     <div className='cart-item-actions'>
@@ -74,7 +68,7 @@ class CartItem extends React.Component{
                         alt='delete'
                         className='action-icons'
                         src=''
-                        onClick={this.delete}
+                        onClick={() => onDelete(id)}
                         />
                     </div>
                 </div>
