@@ -29,19 +29,19 @@ const CartItem=(props)=>{
     //     console.log('test',this)
     // }
 
-        const {qty,price,title,image,id}=props.products;
+        const {Quantity,Price,Title,Image,id}=props.products;
         const {products,increaseQuantity,decreaseQuantity,onDelete}=props;
         // console.log(this.props.products)
         return (
             <div className='cart-item'>
                 {/* {this.props.jsx} */}
                 <div className='left-block'>
-                    <img style={styles.image} alt="carts" src={image} />
+                    <img style={styles.image} alt="carts" src={Image} />
                 </div>
                 <div className='right-block'>
-                    <div style={{fontSize:25}}>{price}</div>
-                    <div style={{color:'#777'}}>{title}</div>
-                    <div style={{color:'#777'}}>{qty}</div>
+                    <div style={{fontSize:25}}>{Price}</div>
+                    <div style={{color:'#777'}}>{Title}</div>
+                    <div style={{color:'#777'}}>{Quantity}</div>
                     <div className='cart-item-actions'>
                         <img 
                         alt='increase'
